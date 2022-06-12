@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 } )
 const getCats = () => {
-    const url = 'https://api.thecatapi.com/v1/images/search?limit=10'
+    const url = 'https://api.thecatapi.com/v1/images/search?limit=15'
     fetch(url, {
         method: 'GET',
         headers: {
@@ -22,13 +22,18 @@ const createCard = (array) => {
         cardContainer.appendChild(card);
         card.innerHTML = `
             <img src='${cat.url}' class='cat-img'/>
-            <div class="container">
-                <p>${cat.likes} Likes</p>
-                <button class="like-btn">♡</button>
-                <form action="submit" class="comment">
-                    <input type="text" placeholder='comment'></input>
-                    <input type="submit"></input>
-                </form>
+            <div class='likes'>
+           <p> <button class="like-btn"> ♥ </button> ${cat.likes} Likes</p>
+           </div>
+            <div class='comments'>
+            <h4>Comments:<h4>
+            <p></p>
+            </div>
+            <div class='form'>
+            <form action="submit">
+                <input type="text" placeholder='comment'></input>
+                <input type="submit"></input>
+            </form>
             </div>
              ` 
         const likeBtn = card.querySelector('.like-btn');

@@ -1,17 +1,40 @@
 h1 {
     color: red;
 }
-.container {
-    padding: 2px 16px;
+.form{
+    position: static;
+    display:inline-block;
+    margin-bottom: 5px;
+}
+.likes {
+    position: relative;
+    padding-bottom: 30px;
+}
+  .like-btn {
+      position: relative;
+      padding-right: 5px;
+      color: red;
+  }
+  .comments {
+     margin: auto;
   }
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px;
-    max-width: fit-content;
+    width: 200px;
+    height: 400px;
+    float: left;
+    width: 25%;
+    padding: 15px;
+    text-align: center;
+    margin: auto;
+    overflow: auto;
 }
 img {
+    position: static;
     border-radius: 5px 5px 0 0;
-    max-width: 200px;
-    margin: 20px;
+    max-width:200px;
+    max-height: 300px;
+    margin-top: 10px;
 }
