@@ -15,11 +15,11 @@ const getCats = () => {
     .then(cat => cat.map(createCard))
 }
 const createCard = (cat) => {
-   let div = document.createElement('div');
-   div.className = 'card'
+   let card = document.createElement('div');
+   card.className = 'card'
    let cardsContainer = document.querySelector('#cards-container');
    cat.likes = 0;
-   div.innerHTML = `
+   card.innerHTML = `
    <img src='${cat.url}'/>
    <div class='likes'>
         <button class="like-btn"> ♥ </button><p> ${cat.likes} Likes</p>
@@ -35,9 +35,12 @@ const createCard = (cat) => {
         </form>
     </div>
    `
+   cardsContainer.appendChild(card)
 
-
-
-   cardsContainer.appendChild(div)
-    
+   let likeBtn = card.querySelector('button');
+   likeBtn.addEventListener('click', () => {
+       cat.likes += 1;
+       card.querySelector('p').textContent = `${cat.likes} Likes`
+   })
 }
+
