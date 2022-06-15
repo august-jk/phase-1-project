@@ -16,6 +16,7 @@ const getCats = () => {
 }
 const createCard = (array) => {
     array.forEach( cat => {
+        cat.likes = 0;
         const card = document.createElement('div');
         card.className = 'card';
         const cardContainer = document.querySelector('#cards');
@@ -23,14 +24,14 @@ const createCard = (array) => {
         card.innerHTML = `
             <img src='${cat.url}' class='cat-img'/>
             <div class='likes'>
-           <p> <button class="like-btn"> ♥ </button> ${cat.likes} Likes</p>
+           <button class="like-btn"> ♥ </button><p> ${cat.likes} Likes</p>
            </div>
             <div class='comments'>
             <h4>Comments:<h4>
             <p></p>
             </div>
             <div class='form'>
-            <form action="submit">
+            <form action="submit"  class='comment-box'>
                 <input type="text" placeholder='comment'></input>
                 <input type="submit"></input>
             </form>
@@ -41,6 +42,11 @@ const createCard = (array) => {
             cat.likes += 1;
             card.querySelector('p').textContent = `${cat.likes} Likes`
             updateLikes(cat)
-    });
-    })
+                }
+            )
+        let form = document.querySelectorAll('.comment-box');
+        let formArr = Array.from(form);
+        formArr.forEach(item => item.addEventListener('submit', (e) => e.preventDefault))  
+        }
+    )
 }
