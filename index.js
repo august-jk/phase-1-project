@@ -42,5 +42,7 @@ const createCard = (cat) => {
        cat.likes += 1;
        card.querySelector('p').textContent = `${cat.likes} Likes`
    })
+   let form = card.querySelector('form')
+   form.addEventListener('submit', (e) => e.preventDefault())
 }
 
