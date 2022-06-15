@@ -24,9 +24,9 @@ const createCard = (cat) => {
    <div class='likes'>
         <button class="like-btn"> ♥ </button><p> ${cat.likes} Likes</p>
    </div>
-   <div class='comments'>
-        <h4>Comments:<h4>
-        <p></p>
+   <div class='comments-section'>
+        <h3>Comments:<h3>
+        <p class='comments'> </p>
         </div>
         <div class='comment-box'>
         <form>
@@ -43,6 +43,15 @@ const createCard = (cat) => {
        card.querySelector('p').textContent = `${cat.likes} Likes`
    })
    let form = card.querySelector('form')
-   form.addEventListener('submit', (e) => e.preventDefault())
+   form.addEventListener('submit', (e) => {
+       e.preventDefault();
+       let comments = card.querySelector('.comments');
+       let ul = document.createElement('ul');
+       let li = document.createElement('li');
+       li.textContent = card.querySelector('input').value;
+       ul.append(li);
+       comments.append(ul);
+       form.reset()
+    })
 }
 
