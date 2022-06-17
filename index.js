@@ -1,10 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    getCats();
-    
-
-} )
-const getCats = () => {
-    const url = 'https://api.thecatapi.com/v1/images/search?limit=15'
+const handleFetch = (url, cb) => {
     fetch(url, {
         method: 'GET',
         headers: {
@@ -12,8 +6,28 @@ const getCats = () => {
     }
     })
     .then(resp => resp.json())
-    .then(cat => cat.map(createCard))
+    .then(cb)
 }
+const getCats = () => {
+    const allCatsUrl = 'https://api.thecatapi.com/v1/images/search?limit=15'
+    handleFetch(allCatsUrl, (cat) => {cat.map(createCard)})
+}
+
+const filterCatsUrl = 'https://api.thecatapi.com/v1/breeds'
+
+
+const createFilter = () => {
+    const filter = document.querySelector('select');
+   handleFetch(filterCatsUrl, (breed) => {
+        breed.map((breed) => {
+            let option = document.createElement('option');
+            option.value = breed.name;
+            option.textContent = `${breed.name}`
+            filter.appendChild(option)
+        })
+   })
+}
+
 const createCard = (cat) => {
    let card = document.createElement('div');
    card.className = 'card'
@@ -53,5 +67,8 @@ const createCard = (cat) => {
        comments.append(ul);
        form.reset()
     })
+    
 }
 
+getCats()
+createFilter()
