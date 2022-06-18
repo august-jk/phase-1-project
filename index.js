@@ -15,18 +15,33 @@ const getCats = () => {
 
 const filterCatsUrl = 'https://api.thecatapi.com/v1/breeds'
 
-
 const createFilter = () => {
     const filter = document.querySelector('select');
    handleFetch(filterCatsUrl, (breed) => {
         breed.map((breed) => {
             let option = document.createElement('option');
-            option.value = breed.name;
+            option.value = breed.id;
             option.textContent = `${breed.name}`
             filter.appendChild(option)
+            })
+            filter.addEventListener('change', (e) => {
+                let id = e.target.value;
+                breed.find((breed) => {
+                    if(id === breed.id){
+                        let specificBreed = document.createElement('div')
+                        specificBreed.innerHTML = `
+                        <h2>${breed.name}</h2>
+                        <img src='${breed.image.url}'/>
+                        <p>${breed.description}</p>
+                        `
+                        document.querySelector('#specific-breed').appendChild(specificBreed)
+                        filter.reset()
+                    }
+                    
+                })
+            })
         })
-   })
-}
+   }
 
 const createCard = (cat) => {
    let card = document.createElement('div');
