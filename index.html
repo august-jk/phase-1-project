@@ -10,11 +10,16 @@
 </head>
 <body>
     <h1>Welcome to CatSpace!</h1>
-    <select name="filter" id="filter-breed"> 
-       <option value="none" selected disabled hidden>Filter by Breed</option>
-    </select>
-    <div id="specific-breed">
-        
+
+    
+    <form action="select">
+        <select name="filter" id="filter-breed"> 
+            <option value="none" selected disabled>Filter by Breed</option>
+            <option value="no-filter">No Filter</option>
+         </select>
+    </form>
+    <div id="filter-container">
+
     </div>
     <div id="cards-container">
         

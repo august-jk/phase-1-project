@@ -14,7 +14,7 @@ const getCats = () => {
 }
 
 const filterCatsUrl = 'https://api.thecatapi.com/v1/breeds'
-
+let cardsContainer = document.querySelector('#cards-container')
 const createFilter = () => {
     const filter = document.querySelector('select');
    handleFetch(filterCatsUrl, (breed) => {
@@ -26,19 +26,27 @@ const createFilter = () => {
             })
             filter.addEventListener('change', (e) => {
                 let id = e.target.value;
+                let container = document.querySelector('#filter-container');
+                container.innerHTML = ''
+                cardsContainer.innerHTML = ''
                 breed.find((breed) => {
-                    if(id === breed.id){
+                    if(id === breed.id){ 
                         let specificBreed = document.createElement('div')
                         specificBreed.innerHTML = `
                         <h2>${breed.name}</h2>
-                        <img src='${breed.image.url}'/>
+                        <img src='${breed.image.url}' id='specific-cat-image'/>
                         <p>${breed.description}</p>
+                        <a href='${breed.wikipedia_url}'>Source</a>
                         `
-                        document.querySelector('#specific-breed').appendChild(specificBreed)
-                        filter.reset()
-                    }
-                    
+                        specificBreed.id = 'specific-breed'
+                        container.appendChild(specificBreed)
+
+                    } 
                 })
+                if( id === 'no-filter'){
+                    getCats()
+                } 
+                document.querySelector('form').reset()
             })
         })
    }
@@ -46,7 +54,6 @@ const createFilter = () => {
 const createCard = (cat) => {
    let card = document.createElement('div');
    card.className = 'card'
-   let cardsContainer = document.querySelector('#cards-container');
    cat.likes = 0;
    card.innerHTML = `
    <img src='${cat.url}'/>
